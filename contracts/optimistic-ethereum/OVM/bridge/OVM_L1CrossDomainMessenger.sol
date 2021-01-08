@@ -18,6 +18,7 @@ import { OVM_BaseCrossDomainMessenger } from "./OVM_BaseCrossDomainMessenger.sol
 
 /**
  * @title OVM_L1CrossDomainMessenger
+ * @dev this contract lives on L1. It sends messages to L2, and relays them from L2
  */
 contract OVM_L1CrossDomainMessenger is iOVM_L1CrossDomainMessenger, OVM_BaseCrossDomainMessenger, Lib_AddressResolver {
 
@@ -184,7 +185,7 @@ contract OVM_L1CrossDomainMessenger is iOVM_L1CrossDomainMessenger, OVM_BaseCros
     }
 
     /**
-     * Verifies that the state root within an inclusion proof is valid.
+     * Verifies that the state root within an inclusion proof is valid and finalized
      * @param _proof Message inclusion proof.
      * @return Whether or not the provided proof is valid.
      */

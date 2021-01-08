@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
+
+/* 
+Lib_SafeExecutionManagerWrapper is used by all the predeploys, for the purpose of generating safe code by replacing stateful EVM operations with custom operations routed through the execution manager.
+ */
+
 /**
  * @title Lib_SafeExecutionManagerWrapper
  */

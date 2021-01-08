@@ -14,6 +14,10 @@ import { Lib_SafeMathWrapper } from "../../libraries/wrappers/Lib_SafeMathWrappe
 
 /* 
 This is the code for the predeploy at 0x4200000000000000000000000000000000000003
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8782202 (Add Notes.md and dotgraphs in artifacts dir)
  */
 
 

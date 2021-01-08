@@ -52,6 +52,9 @@ abstract contract OVM_BaseCrossDomainMessenger is iOVM_BaseCrossDomainMessenger,
         );
 
         messageNonce += 1;
+        // @note: this being the base xdomainmessenger;
+        // on L2 both the OVM_L2CrossDomainMessenger, and the OVM_L2toL1MessagePasser 
+        // will have entries in their `sentMessages`
         sentMessages[keccak256(xDomainCalldata)] = true;
 
         _sendXDomainMessage(xDomainCalldata, _gasLimit);
