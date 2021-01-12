@@ -3,7 +3,9 @@ pragma solidity ^0.7.0;
 
 
 /* 
-Lib_SafeExecutionManagerWrapper is used by all the predeploys, for the purpose of generating safe code by replacing stateful EVM operations with custom operations routed through the execution manager.
+    Lib_SafeExecutionManagerWrapper is used by all the predeploys, for the purpose of generating safe code by replacing stateful 
+    EVM operations with custom operations routed through the execution manager. 
+    This could also be achieved using the custom compiler, but it's done manually for precompiles as an extra layer of safety.
  */
 
 /**
@@ -351,6 +353,8 @@ library Lib_SafeExecutionManagerWrapper {
             bytes memory returndata
         ) = ovmExecutionManager.call{gas: _gasLimit}(_calldata);
 
+    // @note: mythx is worried about this: https://dashboard.mythx.io/#/console/analyses/3571edf6-04c3-404f-b3aa-12e0631d9609
+    // but this being a stateless contract, it should be OK... 
         if (success == false) {
             assembly {
                 revert(add(returndata, 0x20), mload(returndata))

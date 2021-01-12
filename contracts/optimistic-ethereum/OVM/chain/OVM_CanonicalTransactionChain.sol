@@ -307,7 +307,7 @@ contract OVM_CanonicalTransactionChain is iOVM_CanonicalTransactionChain, Lib_Ad
         uint40 nextQueueIndex = getNextQueueIndex();
 
         for (uint256 i = 0; i < _numQueuedTransactions; i++) {
-            if (msg.sender != resolve("OVM_Sequencer")) {
+            if (msg.sender != resolve("OVM_Sequencer")) { // @question: does it make sense to do this check on each iteration?
                 Lib_OVMCodec.QueueElement memory el = getQueueElement(nextQueueIndex);
                 require(
                     el.timestamp + forceInclusionPeriodSeconds < block.timestamp,

@@ -240,8 +240,8 @@ library Lib_RingBuffer {
             "Index out of bounds."
         );
 
-        Buffer storage currBuffer = _self.getBuffer(ctx.currBufferIndex);
-        Buffer storage prevBuffer = _self.getBuffer(ctx.currBufferIndex + 1);
+        Buffer storage currBuffer = _self.getBuffer(ctx.currBufferIndex); // @note: unused var
+        Buffer storage prevBuffer = _self.getBuffer(ctx.currBufferIndex + 1); // @note: unused var
 
         if (_index < ctx.currResetIndex) {
             // We're switching back to the previous buffer.
@@ -422,7 +422,7 @@ library Lib_RingBuffer {
         uint256 _which
     )
         internal
-        view
+        view // @note: could be pure I think
         returns (
             Buffer storage
         )

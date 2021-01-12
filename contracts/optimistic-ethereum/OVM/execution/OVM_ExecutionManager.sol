@@ -158,6 +158,8 @@ contract OVM_ExecutionManager is iOVM_ExecutionManager, Lib_AddressResolver {
 
         // Initialize the execution context, must be initialized before we perform any gas metering
         // or we'll throw a nuisance gas error.
+        // @note: I'd prefer if we returned an set a value, rather than using side effects.
+        // I wonder if this is cheaper?
         _initContext(_transaction);
 
         // TEMPORARY: Gas metering is disabled for minnet.

@@ -94,5 +94,25 @@ library Lib_ECDSAUtils {
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 messageHash = keccak256(_message);
         return keccak256(abi.encodePacked(prefix, messageHash));
+
+// @note: this message is reachable via Lib_ECDSAUtils.recover()... 
+// probably not a big deal, but need to check. 
+// ## SWC-128: DoS With Block Gas Limit
+// Potentially unbounded data structure passed to builtin.
+// Gas consumption in function "getEthSignedMessageHash" in contract "Lib_ECDSAUtils" depends on the size of data structures that may grow unboundedly. Specifically the "1-st" argument to builtin "abi.encodePacked" may be able to grow unboundedly causing the builtin to consume more gas than the block gas limit, effectively causing a denial-of-service condition.Consider that an attacker might attempt to cause this condition on purpose.
+
+// ### Severity: Low
+
+// ### Code
+// ```
+// 92 |              )
+// 93 |          {
+// 94 |              bytes memory prefix = "\x19Ethereum Signed Message:\n32";
+// 95 |              bytes32 messageHash = keccak256(_message);
+// 96 |  >>>         return keccak256(abi.encodePacked(prefix, messageHash)); <<<
+// ```
+        
+
+
     }
 }

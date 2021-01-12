@@ -156,6 +156,23 @@ library Lib_EthUtils {
         encoded[1] = Lib_RLPWriter.writeUint(_nonce);
 
         bytes memory encodedList = Lib_RLPWriter.writeList(encoded);
+/* @note: https://dashboard.mythx.io/#/console/analyses/7b4192ea-71e6-448e-8b73-3a549d6d9033
+## SWC-128: DoS With Block Gas Limit
+Potentially unbounded data structure passed to builtin.
+Gas consumption in function "getAddressForCREATE" in contract "Lib_EthUtils" depends on the size of data structures that may grow unboundedly. Specifically the "1-st" argument to builtin "keccak256" may be able to grow unboundedly causing the builtin to consume more gas than the block gas limit, effectively causing a denial-of-service condition.Consider that an attacker might attempt to cause this condition on purpose.
+
+### Severity: Low
+
+### Code
+```
+155 |              encoded[0] = Lib_RLPWriter.writeAddress(_creator);
+156 |              encoded[1] = Lib_RLPWriter.writeUint(_nonce);
+157 |      
+158 |              bytes memory encodedList = Lib_RLPWriter.writeList(encoded);
+159 |  >>>         return Lib_Bytes32Utils.toAddress(keccak256(encodedList)); <<<
+```
+         */
+
         return Lib_Bytes32Utils.toAddress(keccak256(encodedList));
     }
 

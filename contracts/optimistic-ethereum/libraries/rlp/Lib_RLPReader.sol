@@ -96,6 +96,23 @@ library Lib_RLPReader {
 
         uint256 itemCount = 0;
         uint256 offset = listOffset;
+
+        /* @note: https://dashboard.mythx.io/#/console/analyses/a662b08c-6304-4843-a980-551230e95551
+## SWC-128: DoS With Block Gas Limit
+Loop over unbounded data structure.
+Gas consumption in function "readList" in contract "Lib_RLPReader" depends on the size of data structures or values that may grow unboundedly. If the data structure grows too large, the gas required to execute the code will exceed the block gas limit, effectively causing a denial-of-service condition. Consider that an attacker might attempt to cause this condition on purpose.
+
+### Severity: Low
+
+### Code
+```
+95 |              RLPItem[] memory out = new RLPItem[](MAX_LIST_LENGTH);
+96 |      
+97 |              uint256 itemCount = 0;
+98 |              uint256 offset = listOffset;
+99 |  >>>         while (offset < _in.length) { <<<
+```
+         */
         while (offset < _in.length) {
             require(
                 itemCount < MAX_LIST_LENGTH,

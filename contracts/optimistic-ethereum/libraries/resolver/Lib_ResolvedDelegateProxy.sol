@@ -17,6 +17,7 @@ contract Lib_ResolvedDelegateProxy {
     // implementation contract. For example, instead of storing these fields at
     // storage slot `0` & `1`, they are stored at `hash(${FIELD_NAME} + address(this))`
     // See: https://solidity.readthedocs.io/en/v0.7.0/internals/layout_in_storage.html
+    // @flag: ^ that's not quite what the docs say
     mapping(address=>string) private implementationName;
     mapping(address=>Lib_AddressManager) private addressManager;
 
@@ -35,7 +36,7 @@ contract Lib_ResolvedDelegateProxy {
     )
     {
         addressManager[address(this)] = Lib_AddressManager(_libAddressManager);
-        implementationName[address(this)] = _implementationName;
+        implementationName[address(this)] = _implementationName; // string?? Yeah, that's what the Lib_AddressManager.
     }
 
 

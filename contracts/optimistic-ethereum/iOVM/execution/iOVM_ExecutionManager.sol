@@ -10,6 +10,8 @@ interface iOVM_ExecutionManager {
      * Enums *
      *********/
 
+    // @note: all the data types are here.
+
     enum RevertFlag {
         DID_NOT_REVERT,
         OUT_OF_GAS,
