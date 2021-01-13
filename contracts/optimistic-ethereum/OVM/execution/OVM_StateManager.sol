@@ -34,7 +34,7 @@ contract OVM_StateManager is iOVM_StateManager {
      * Contract Variables: Internal Storage *
      ****************************************/
 
-    mapping (address => Lib_OVMCodec.Account) internal accounts;
+    mapping (address => Lib_OVMCodec.Account) internal accounts; // @note: maps ovm addresses to L1 locations
     mapping (address => mapping (bytes32 => bytes32)) internal contractStorage;
     mapping (address => mapping (bytes32 => bool)) internal verifiedContractStorage;
     mapping (bytes32 => ItemState) internal itemStates;

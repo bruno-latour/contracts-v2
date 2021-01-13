@@ -51,8 +51,8 @@ library Lib_OVMCodec {
         uint256 balance;
         bytes32 storageRoot;
         bytes32 codeHash;
-        address ethAddress;
-        bool isFresh;
+        address ethAddress; // @note: this corresponds to the l1 address.
+        bool isFresh; // indicates that this contract was created during the course of the fraudproof
     }
 
     struct EVMAccount {
