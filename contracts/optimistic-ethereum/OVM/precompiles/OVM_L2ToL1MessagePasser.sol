@@ -35,7 +35,7 @@ contract OVM_L2ToL1MessagePasser is iOVM_L2ToL1MessagePasser {
         sentMessages[keccak256(
             abi.encodePacked(
                 _message,
-                msg.sender
+                msg.sender // @note: there should be a check in L1XDomainMessenger to ensure this is the L2XDomainMessenger...
             )
         )] = true;
     }
