@@ -114,7 +114,7 @@ export const makeStateDump = async (cfg: RollupDeployConfig): Promise<any> => {
     deploymentSigner: signer,
     ovmGasMeteringConfig: {
       minTransactionGasLimit: 0,
-      maxTransactionGasLimit: 1_000_000_000,
+      maxTransactionGasLimit: 9_000_000,
       maxGasPerQueuePerEpoch: 1_000_000_000_000,
       secondsPerEpoch: 0,
     },
@@ -156,6 +156,8 @@ export const makeStateDump = async (cfg: RollupDeployConfig): Promise<any> => {
       'OVM_ETH',
       'mockOVM_ECDSAContractAccount',
     ],
+    deployOverrides: {},
+    waitForReceipts: false,
   }
 
   config = { ...config, ...cfg }

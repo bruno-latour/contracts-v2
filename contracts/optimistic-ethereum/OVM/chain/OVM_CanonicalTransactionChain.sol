@@ -26,9 +26,9 @@ contract OVM_CanonicalTransactionChain is iOVM_CanonicalTransactionChain, Lib_Ad
      *************/
 
     // L2 tx gas-related
-    uint256 constant public MIN_ROLLUP_TX_GAS = 20000;
+    uint256 constant public MIN_ROLLUP_TX_GAS = 100000;
     uint256 constant public MAX_ROLLUP_TX_SIZE = 10000;
-    uint256 constant public L2_GAS_DISCOUNT_DIVISOR = 10;
+    uint256 constant public L2_GAS_DISCOUNT_DIVISOR = 32;
 
     // Encoding-related (all in bytes)
     uint256 constant internal BATCH_CONTEXT_SIZE = 16;
@@ -42,10 +42,9 @@ contract OVM_CanonicalTransactionChain is iOVM_CanonicalTransactionChain, Lib_Ad
      * Variables *
      *************/
 
-    uint256 internal forceInclusionPeriodSeconds;
-    uint256 internal forceInclusionPeriodBlocks;
-    uint256 internal maxTransactionGasLimit;
-    uint256 internal lastOVMTimestamp;
+    uint256 public forceInclusionPeriodSeconds;
+    uint256 public forceInclusionPeriodBlocks;
+    uint256 public maxTransactionGasLimit;
 
 
     /***************

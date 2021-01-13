@@ -18,7 +18,11 @@ import { OVM_BaseCrossDomainMessenger } from "./OVM_BaseCrossDomainMessenger.sol
 /**
  * @title OVM_L2CrossDomainMessenger
  * @dev L2 CONTRACT (COMPILED)
+<<<<<<< HEAD
  * This contract lives on L2. It sends messages to L1, and relays them from L1
+=======
+ * This contract lives on L2. It sends messages to L1, and relays them from L1.
+>>>>>>> master
  */
 contract OVM_L2CrossDomainMessenger is iOVM_L2CrossDomainMessenger, OVM_BaseCrossDomainMessenger, Lib_AddressResolver {
 
@@ -54,7 +58,7 @@ contract OVM_L2CrossDomainMessenger is iOVM_L2CrossDomainMessenger, OVM_BaseCros
         uint256 _messageNonce
     )
         override
-        nonreentrant
+        nonReentrant
         public
     {
         require(
