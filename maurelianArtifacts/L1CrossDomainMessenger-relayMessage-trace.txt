@@ -1,0 +1,53 @@
+└─ OVM_L1CrossDomainMessenger::relayMessage
+   ├─ OVM_BaseCrossDomainMessenger::_getXDomainCalldata | [Int] 🔒   
+   ├─ OVM_L1CrossDomainMessenger::_verifyXDomainMessage | [Int] 🔒  🛑 
+   │  ├─ OVM_L1CrossDomainMessenger::_verifyStateRootProof | [Int] 🔒   
+   │  │  ├─ Lib_AddressResolver::resolve | [Pub] ❗️   
+   │  │  │  └─ Lib_AddressManager::getAddress | [Pub] ❗️   
+   │  │  │     └─ Lib_AddressManager::_getNameHash | [Int] 🔒   
+   │  │  ├─ iOVM_StateCommitmentChain::insideFraudProofWindow | [Ext] ❗️   
+   │  │  └─ iOVM_StateCommitmentChain::verifyStateCommitment | [Ext] ❗️   
+   │  └─ OVM_L1CrossDomainMessenger::_verifyStorageProof | [Int] 🔒   
+   │     ├─ Lib_AddressResolver::resolve | [Pub] ❗️   : ..[Repeated Ref]..
+   │     ├─ Lib_SecureMerkleTrie::get | [Int] 🔒   
+   │     │  ├─ Lib_SecureMerkleTrie::_getSecureKey | [Priv] 🔐   
+   │     │  └─ Lib_MerkleTrie::get | [Int] 🔒   
+   │     │     ├─ Lib_MerkleTrie::_parseProof | [Priv] 🔐   
+   │     │     │  ├─ Lib_RLPReader::readList | [Int] 🔒   
+   │     │     │  │  ├─ Lib_RLPReader::readList | [Int] 🔒   : ..[Repeated Ref]..
+   │     │     │  │  └─ Lib_RLPReader::toRLPItem | [Int] 🔒   
+   │     │     │  └─ Lib_RLPReader::readBytes | [Int] 🔒   
+   │     │     │     ├─ Lib_RLPReader::readBytes | [Int] 🔒   : ..[Repeated Ref]..
+   │     │     │     └─ Lib_RLPReader::toRLPItem | [Int] 🔒   
+   │     │     ├─ Lib_MerkleTrie::_walkNodePath | [Priv] 🔐   
+   │     │     │  ├─ Lib_BytesUtils::toNibbles | [Int] 🔒   
+   │     │     │  ├─ Lib_BytesUtils::toBytes32 | [Int] 🔒   
+   │     │     │  ├─ Lib_MerkleTrie::_getNodeID | [Priv] 🔐   
+   │     │     │  │  ├─ Lib_RLPReader::readRawBytes | [Int] 🔒   
+   │     │     │  │  │  └─ Lib_RLPReader::_copy | [Priv] 🔐   
+   │     │     │  │  │     └─ Lib_RLPReader::_copy | [Priv] 🔐   : ..[Repeated Ref]..
+   │     │     │  │  ├─ Lib_RLPReader::readBytes | [Int] 🔒   : ..[Repeated Ref]..
+   │     │     │  │  └─ Lib_BytesUtils::toBytes32 | [Int] 🔒   
+   │     │     │  ├─ Lib_MerkleTrie::_getNodePath | [Priv] 🔐   
+   │     │     │  │  ├─ Lib_BytesUtils::toNibbles | [Int] 🔒   
+   │     │     │  │  └─ Lib_RLPReader::readBytes | [Int] 🔒   : ..[Repeated Ref]..
+   │     │     │  ├─ Lib_BytesUtils::slice | [Int] 🔒   
+   │     │     │  │  └─ Lib_BytesUtils::slice | [Int] 🔒   : ..[Repeated Ref]..
+   │     │     │  └─ Lib_MerkleTrie::_getSharedNibbleLength | [Priv] 🔐   
+   │     │     └─ Lib_MerkleTrie::_getNodeValue | [Priv] 🔐   
+   │     │        └─ Lib_RLPReader::readBytes | [Int] 🔒   : ..[Repeated Ref]..
+   │     ├─ Lib_OVMCodec::decodeEVMAccount | [Int] 🔒   
+   │     │  ├─ Lib_RLPReader::readList | [Int] 🔒   : ..[Repeated Ref]..
+   │     │  ├─ Lib_RLPReader::readUint256 | [Int] 🔒   
+   │     │  │  ├─ Lib_RLPReader::readUint256 | [Int] 🔒   : ..[Repeated Ref]..
+   │     │  │  └─ Lib_RLPReader::toRLPItem | [Int] 🔒   
+   │     │  └─ Lib_RLPReader::readBytes32 | [Int] 🔒   
+   │     │     ├─ Lib_RLPReader::readBytes32 | [Int] 🔒   : ..[Repeated Ref]..
+   │     │     └─ Lib_RLPReader::toRLPItem | [Int] 🔒   
+   │     └─ Lib_SecureMerkleTrie::verifyInclusionProof | [Int] 🔒   
+   │        ├─ Lib_SecureMerkleTrie::_getSecureKey | [Priv] 🔐   
+   │        └─ Lib_MerkleTrie::verifyInclusionProof | [Int] 🔒   
+   │           ├─ Lib_MerkleTrie::get | [Int] 🔒   : ..[Repeated Ref]..
+   │           └─ Lib_BytesUtils::equal | [Int] 🔒   
+   ├─ _target::call
+   └─ Lib_AddressResolver::resolve | [Pub] ❗️   : ..[Repeated Ref]..

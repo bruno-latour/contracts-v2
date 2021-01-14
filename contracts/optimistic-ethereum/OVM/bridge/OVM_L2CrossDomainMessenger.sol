@@ -18,11 +18,8 @@ import { OVM_BaseCrossDomainMessenger } from "./OVM_BaseCrossDomainMessenger.sol
 /**
  * @title OVM_L2CrossDomainMessenger
  * @dev L2 CONTRACT (COMPILED)
-<<<<<<< HEAD
- * This contract lives on L2. It sends messages to L1, and relays them from L1
-=======
- * This contract lives on L2. It sends messages to L1, and relays them from L1.
->>>>>>> master
+ * This contract lives on L2. It sends L2->L1 messages into L1 (via OVM_l2toL1MessagePasser),
+ * and relays L1->L2 messages from L1 to their target on L2.
  */
 contract OVM_L2CrossDomainMessenger is iOVM_L2CrossDomainMessenger, OVM_BaseCrossDomainMessenger, Lib_AddressResolver {
 
