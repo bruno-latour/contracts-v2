@@ -756,13 +756,12 @@ contract OVM_CanonicalTransactionChain is iOVM_CanonicalTransactionChain, Lib_Ad
     )
         internal
     {
-        (uint40 totalElements, uint40 nextQueueIndex, uint40 lastTimestamp, uint40 lastBlockNumber) = _getBatchExtraData();
-
+        
         Lib_OVMCodec.ChainBatchHeader memory header = Lib_OVMCodec.ChainBatchHeader({
             batchIndex: batches().length(),
             batchRoot: _transactionRoot,
             batchSize: _batchSize,
-            prevTotalElements: totalElements,
+            prevTotalElements: getTotalElements(),
             extraData: hex""
         });
 
@@ -776,7 +775,7 @@ contract OVM_CanonicalTransactionChain is iOVM_CanonicalTransactionChain, Lib_Ad
 
         bytes32 batchHeaderHash = Lib_OVMCodec.hashBatchHeader(header);
         bytes27 latestBatchContext = _makeBatchExtraData(
-            totalElements + uint40(header.batchSize),
+            totalElements + uint40(_batchSize),
             nextQueueIndex + uint40(_numQueuedTransactions),
             _timestamp,
             _blockNumber
