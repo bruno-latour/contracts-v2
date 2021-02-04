@@ -521,7 +521,7 @@ contract OVM_CanonicalTransactionChain is iOVM_CanonicalTransactionChain, Lib_Ad
             BatchContext memory
         )
     {
-        uint256 contextPtr = 15 + _index * BATCH_CONTEXT_SIZE;
+        uint256 contextPtr = BATCH_CONTEXT_START_POS + _index * BATCH_CONTEXT_SIZE;
         uint256 numSequencedTransactions;
         uint256 numSubsequentQueueTransactions;
         uint256 ctxTimestamp;
